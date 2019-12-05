@@ -36,7 +36,7 @@ class Article(models.Model):
     updateDate = models.DateTimeField()
     duration = models.DurationField()
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    helpers = models.ManyToManyField(Student, on_delete=models.CASCADE)
+    helpers = models.ManyToManyField(Student)
     author = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -47,7 +47,7 @@ class User(models.Model):
     name = models.CharField(max_length=70)
     surname = models.CharField(max_length=70)
     location = models.CharField(max_length=70)
-    badge = models.ManyToManyField(Badge, on_delete=models.CASCADE)
+    badge = models.ManyToManyField(Badge)
     creationDate = models.DateField()
 
     def __str__(self):
@@ -84,9 +84,9 @@ class Comment(models.Model):
     text = models.TextField()
     like = models.IntegerField()
     date = models.DateField()
-    file = models.ManyToOneRel(File, on_delete=models.CASCADE)
+    file = models.ForeignKey(File, on_delete=models.CASCADE)
     user = models.ForeignKey(Student, on_delete=models.CASCADE)
-    tag = models.ManyToManyField(Tag, on_delete=models.CASCADE)
+    tag = models.ManyToManyField(Tag)
     contentStep = models.ForeignKey(ContentStep, on_delete=models.CASCADE)
 
     def __str__(self):
