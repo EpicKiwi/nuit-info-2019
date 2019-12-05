@@ -1,1 +1,5 @@
 django>=3.0
+psycopg2-binary
+raven
+pillow
+gunicorn
