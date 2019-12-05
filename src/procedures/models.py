@@ -1,6 +1,16 @@
 from django.db import models
+from users.models import Student
 
 # Create your models here.
+
+
+class File(models.Model):
+    file = models.FileField()
+    tag = models.CharField(max_length=25)
+    addedDate = models.DateField()
+
+    def __str__(self):
+        return self.tag
 
 
 class Tag(models.Model):
@@ -25,8 +35,8 @@ class Article(models.Model):
     text = models.TextField()
     author = models.ForeignKey(Student, on_delete=models.CASCADE)
     updateDate = models.DateField()
-    helpers = models.ManyToManyField(Student, on_delete=models.CASCADE)
-    duration = models.durationField()
+    helpers = models.ManyToManyField(Student)
+    duration = models.DurationField()
 
     def __str__(self):
         return self.title
@@ -48,9 +58,9 @@ class ContentStep(models.Model):
     ]
     type = models.CharField(max_length=3, choices=TYPE_CHOICES, default='ONL')
     text = models.TextField()
-    duration = models.durationField()
+    duration = models.DurationField()
     step = models.ForeignKey(Step, on_delete=models.CASCADE)
-    file = ForeignKey(File, on_delete=models.CASCADE)
+    file = models.ForeignKey(File, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.text
