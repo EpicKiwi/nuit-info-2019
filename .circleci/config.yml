@@ -9,7 +9,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "51:b3:01:32:82:af:98:47:c3:48:87:07:19:2b:90:7b"
+            - "9a:f3:0c:d8:78:68:3e:5c:7c:05:0a:e0:8e:bf:2d:f8"
       - run:
           name: deploy
           command: ssh -oStrictHostKeyChecking=no epickiwi@epickiwi.fr "cd nuit-info-2019 && ./deploy.sh"
