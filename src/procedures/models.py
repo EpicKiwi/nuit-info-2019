@@ -2,10 +2,31 @@ from django.db import models
 
 # Create your models here.
 
+
+class Tag(models.Model):
+    name = models.CharField(max_length=70)
+
+    def __str__(self):
+        return self.title
+
+class Article(models.Model):
+    title = models.CharField(max_length=70)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    location = models.CharField(max_length=70)
+    text = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField()
+
+    def __str__(self):
+        return self.title
+
+
 class User(models.Model):
     name = models.CharField(max_length=70)
     surname = models.CharField(max_length=70)
     location = models.CharField(max_length=70)
+    badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
+    creationDate = models.DateField()
 
     def __str__(self):
         return self.name + ' ' + self.surname
@@ -45,4 +66,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
-
