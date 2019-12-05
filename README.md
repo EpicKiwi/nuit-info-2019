@@ -21,7 +21,7 @@ pip install -r src/requirements.txt
 Démarrez le serveur
 
 ```
-./dev.sh
+./dev.sh runserver
 ```
 
 **OU** Démarrez la configuration `Dev` dans Pycharm
@@ -31,5 +31,5 @@ Démarrez le serveur
 Executez les migration de la base de données
 
 ```
-cd src/ && python manage.py migrate
+./dev.sh migrate
 ```
