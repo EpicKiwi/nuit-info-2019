@@ -23,9 +23,9 @@ class Article(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     location = models.CharField(max_length=70)
     text = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(Student, on_delete=models.CASCADE)
     updateDate = models.DateField()
-    helpers = models.ManyToManyField(User, on_delete=models.CASCADE)
+    helpers = models.ManyToManyField(Student, on_delete=models.CASCADE)
     duration = models.durationField()
 
     def __str__(self):
@@ -62,7 +62,7 @@ class Comment(models.Model):
     like = models.IntegerField()
     date = models.DateField()
     file = models.ForeignKey(File, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Student, on_delete=models.CASCADE)
     contentStep = models.ForeignKey(ContentStep, on_delete=models.CASCADE)
 
     def __str__(self):
