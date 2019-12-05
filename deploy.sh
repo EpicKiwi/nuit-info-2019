@@ -4,7 +4,7 @@ set -e
 echo "checking out latest version"
 git pull origin master
 
-VERSION=$(./get_version.sh)
+VERSION=$(./get-version.sh)
 export VERSION
 echo "DEPLOYING version $VERSION"
 
