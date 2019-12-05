@@ -1,7 +1,17 @@
 from django.db import models
+from users.models import Student
 
 
 # Create your models here.
+
+
+class File(models.Model):
+    file = models.FileField()
+    tag = models.CharField(max_length=25)
+    addedDate = models.DateField()
+
+    def __str__(self):
+        return self.tag
 
 
 class Tag(models.Model):
@@ -19,25 +29,6 @@ class Badge(models.Model):
         return self.name
 
 
-class File(models.Model):
-    text = models.TextField(help_text='Description du fichier')
-    file = models.FileField()
-
-    def __str__(self):
-        return self.file.attname
-
-
-class Student(models.Model):
-    name = models.CharField(max_length=128)
-    surname = models.CharField(max_length=128)
-    location = models.CharField(max_length=128)
-    creationDate = models.DateTimeField()
-    badge = models.ManyToManyField(Badge, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.surname
-
-
 class Article(models.Model):
     title = models.CharField(max_length=200)
     location = models.CharField(max_length=70)
@@ -50,6 +41,17 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class User(models.Model):
+    name = models.CharField(max_length=70)
+    surname = models.CharField(max_length=70)
+    location = models.CharField(max_length=70)
+    badge = models.ManyToManyField(Badge, on_delete=models.CASCADE)
+    creationDate = models.DateField()
+
+    def __str__(self):
+        return self.name + ' ' + self.surname
 
 
 class Step(models.Model):
