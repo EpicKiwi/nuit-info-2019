@@ -32,17 +32,6 @@ class Article(models.Model):
         return self.title
 
 
-class User(models.Model):
-    name = models.CharField(max_length=70)
-    surname = models.CharField(max_length=70)
-    location = models.CharField(max_length=70)
-    badge = models.ManyToManyField(Badge, on_delete=models.CASCADE)
-    creationDate = models.DateField()
-
-    def __str__(self):
-        return self.name + ' ' + self.surname
-
-
 class Step(models.Model):
     title = models.TextField()
     order = models.IntegerField()
