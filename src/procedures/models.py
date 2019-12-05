@@ -9,13 +9,24 @@ class Tag(models.Model):
     def __str__(self):
         return self.title
 
+
+class Badge(models.Model):
+    picture = models.ImageField()
+    name = models.CharField(max_length=70)
+
+    def __str__(self):
+        return self.title
+
+
 class Article(models.Model):
     title = models.CharField(max_length=70)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     location = models.CharField(max_length=70)
     text = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    updateDate = models.DateField()
+    helpers = models.ManyToManyField(User, on_delete=models.CASCADE)
+    duration = models.durationField()
 
     def __str__(self):
         return self.title
@@ -25,32 +36,32 @@ class User(models.Model):
     name = models.CharField(max_length=70)
     surname = models.CharField(max_length=70)
     location = models.CharField(max_length=70)
-    badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
+    badge = models.ManyToManyField(Badge, on_delete=models.CASCADE)
     creationDate = models.DateField()
 
     def __str__(self):
         return self.name + ' ' + self.surname
 
 
-class Article(models.Model):
-    title = models.CharField(max_length=70)
-    tag = models.CharField(max_length=70)
-    location = models.CharField(max_length=70)
-    text = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
+class Step(models.Model):
+    title = models.TextField()
+    order = models.IntegerField()
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
 
-class Comment(models.Model):
+class ContentStep(models.Model):
+    TYPE_CHOICES = [
+        ( 'ONL', 'En ligne' ),
+        ( 'IRL', 'Physique' ),
+    ]
+    type = models.CharField(max_length=3, choices=TYPE_CHOICES, default='ONL')
     text = models.TextField()
-    score = models.IntegerField()
-    date = models.DateField()
-    location = models.CharField(max_length=70)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    duration = models.durationField()
     step = models.ForeignKey(Step, on_delete=models.CASCADE)
+    file = ForeignKey(File, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.text
@@ -58,11 +69,12 @@ class Comment(models.Model):
 
 class Comment(models.Model):
     text = models.TextField()
-    score = models.IntegerField()
+    tag = models.CharField(max_length=20)
+    like = models.IntegerField()
     date = models.DateField()
-    location = models.CharField(max_length=70)
+    file = models.ForeignKey(File, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    step = models.ForeignKey(Step, on_delete=models.CASCADE)
+    contentStep = models.ForeignKey(ContentStep, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.text
