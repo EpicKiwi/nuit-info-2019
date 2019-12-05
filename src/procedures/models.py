@@ -37,21 +37,11 @@ class Article(models.Model):
     duration = models.DurationField()
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     helpers = models.ManyToManyField(Student)
-    author = models.ForeignKey(Student, on_delete=models.CASCADE)
+    author = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="%(app_label)s%(class)s_related", related_query_name="%(app_label)s%(class)s")
+    
 
     def __str__(self):
         return self.title
-
-
-class User(models.Model):
-    name = models.CharField(max_length=70)
-    surname = models.CharField(max_length=70)
-    location = models.CharField(max_length=70)
-    badge = models.ManyToManyField(Badge)
-    creationDate = models.DateField()
-
-    def __str__(self):
-        return self.name + ' ' + self.surname
 
 
 class Step(models.Model):
