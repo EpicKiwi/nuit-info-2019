@@ -18,5 +18,5 @@ pip install -r src/requirements.txt
 
 Démarrez le serveur
 ```
-cd src && python manage.py runserver
+cd src && DB_ENVIRONMENT=development VERSION=dev python manage.py runserver
 ```
