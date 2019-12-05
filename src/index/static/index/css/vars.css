@@ -1,0 +1,17 @@
+body {
+    --heading-text-fonts: sans-serif;
+    --body-text-fonts: sans-serif;
+
+    --primary-color: #000;
+    --secondary-color: #000;
+    --background-color: #fff;
+
+    --heading-text-color: #000;
+    --body-text-color: #000;
+
+    --heading-text-color-on-primary: #fff;
+    --body-text-color-on-primary: #fff;
+
+    --on-primary: #fff;
+    --on-secondary: #fff;
+}

@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}{% block notitle %} - {% endblock %}No PLS</title>
+    <link rel="stylesheet" href="{% static "index/css/global.css" %}">
+    <link rel="stylesheet" href="{% static "index/css/vars.css" %}">
+    {% block styles %}{% endblock %}
+    {% block headscripts %}{% endblock %}
+    {% block opengraph %}{% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block scripts %}{% endblock %}
+</body>
+</html>
