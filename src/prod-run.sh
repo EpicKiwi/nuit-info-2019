@@ -8,6 +8,6 @@ done
 
 IS_MIGRATING=true python manage.py migrate
 
-python manage.py collectstatic
+python manage.py collectstatic --noinput
 
 gunicorn bdecesi.wsgi --bind=0.0.0.0 $@
