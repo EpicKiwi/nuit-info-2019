@@ -32,8 +32,10 @@ def send_comment(request, article_slug):
         step_content = get_object_or_404(ContentStep, id=filled_form.cleaned_data["step_content_id"])
         comment = Comment.objects.create(
             contentStep=step_content,
-            text=filled_form.cleaned_data["comment"],
-            tag=filled_form.cleaned_data["tag"])
+            text=filled_form.cleaned_data["comment"])
+        if filled_form.cleaned_data["tag"] is not None:
+            comment.tag.set(filled_form.cleaned_data["tag"])
+            comment.save()
 
     return redirect(
         reverse("view_procedure", args=[article_slug]) +
