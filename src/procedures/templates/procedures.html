@@ -86,6 +86,7 @@
             {% for comment in contentstep.get_best_comments %}
                 <div class="comment">
                     <p class="likes">Likes : {{ comment.like }}</p>
+                    <p><a href="{% url "comment_upvote" article_slug comment.id %}">Upvote</a> - <a href="{% url "comment_downvote" article_slug comment.id %}">Downvote</a></p>
                     <p class="comment-text">
                         {{ comment.text }}
                     </p>

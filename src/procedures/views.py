@@ -36,3 +36,28 @@ def send_comment(request, article_slug):
         reverse("view_procedure", args=[article_slug]) +
         "?highlight_comment={}".format(comment.id if comment is not None else None))
 
+
+def comment_upvote(request, article_slug, comment_id):
+
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if comment.contentStep.step.article.slug == article_slug:
+        comment.like += 1
+        comment.save()
+
+    return redirect(
+        reverse("view_procedure", args=[article_slug]) +
+        "?highlight_comment={}".format(comment.id if comment is not None else None))
+
+
+def comment_downvote(request, article_slug, comment_id):
+
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if comment.contentStep.step.article.slug == article_slug:
+        comment.like -= 1
+        comment.save()
+
+    return redirect(
+        reverse("view_procedure", args=[article_slug]) +
+        "?highlight_comment={}".format(comment.id if comment is not None else None))
