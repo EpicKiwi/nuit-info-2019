@@ -1,0 +1,98 @@
+.procedures, .search {
+    width: 100%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 10px;
+    font-family: var(--body-text-fonts);
+}
+
+.procedure {
+    display: block;
+
+    width: calc(100% - 10px);
+    margin: 10px 5px;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    border-radius: 3px;
+
+    padding: 20px;
+
+    color: inherit;
+    text-decoration: inherit;
+
+    transition: ease 0.5s box-shadow;
+
+}
+
+.procedure:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.procedure-title {
+    font-size: 45px;
+    font-weight: lighter;
+}
+
+.procedure-desc {
+    margin-bottom: 20px;
+}
+
+.procedure-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: stretch;
+}
+
+.procedure-tags {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.brief-text {
+    width: 100%;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 10px;
+    font-size: 20px;
+    font-family: var(--body-text-fonts);
+}
+
+.main-title {
+    font-family: var(--heading-text-fonts);
+    color: var(--heading-text-color);
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 800px) {
+
+    .main-title {
+        font-size: 30px;
+        text-align: center;
+    }
+
+}
+
+.search .form-field {
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+.search .form-field input {
+    flex: 1;
+    font-size: 20px;
+    padding: 5px;
+    border: 0;
+}
+
+.search .form-field button, .search .form-field button * {
+    height: 50px;
+    width: 50px;
+    background: var(--primary-color);
+    color: var(--on-primary);
+    border: 0;
+}

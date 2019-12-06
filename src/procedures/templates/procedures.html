@@ -37,9 +37,10 @@
     </div>
 
 {% for step in steps %}
+
     <div class="article-steps">
         <h3 class="article-step-title">{{ forloop.counter }}. {{ step.title }}</h3>
-        <input type="checkbox" class="checkbox-step" onclick="check({{ step.id }})" id="checkbox-{{ step.id }}">
+
         {% for contentstep in step.contentstep_set.all %}
 
         <h4>{{ contentstep.type }}</h4>
@@ -48,12 +49,12 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque dolorum ducimus error illum incidunt ipsam laudantium, molestias numquam,
             optio porro quae quas sed sequi unde vel voluptates? Libero.
         </p>
-        <div class="tips" id="tips-{{ step.id }}">
+        <div class="tips">
             {% for comment in contentstep.get_best_comments %}
-            <div class="tip" >
+            <div class="tip">
                 <div class="tip-vote">
                     <a class="iconify icon-vote" data-icon="mdi-chevron-up" href="{% url "comment_upvote" article_slug comment.id %}">Upvote</a>
-                    <p>  {{ comment.like }} </p>
+                    <p>  Likes : {{ comment.like }} </p>
                     <a class="iconify icon-vote" data-icon="mdi-chevron-down" href="{% url "comment_downvote" article_slug comment.id %}">Downvote</a>
                 </div>
                 <div class="tip-content">
@@ -77,7 +78,11 @@
                 </div>
             </div>
              {% endfor %}
-
+            <form class="comment-form-hidden" action="{% url "send_comment" article_slug=article.slug %}" method="post">
+            {% csrf_token %}
+            {{ contentstep.get_comment_form }}
+            <button>Send</button>
+            </form>
             <div class="more-tip">
                 <button>
                 <span>Plus d'astuces</span>

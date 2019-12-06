@@ -1,1 +1,39 @@
-Test
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %}Toutes les procédures{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static "procedures/css/list.css" %}">
+{% endblock %}
+
+{% block body %}
+    <div class="brief-text">
+        <h1 class="main-title">Reste zen, trouve ta procédure ici...</h1>
+        <p>Chaque procédure administrative que tu retrouve sur ce site te donne en détail, les fichiers à fournir, les exceptions et les différentes variantes de chaque procédure.</p>
+        <p>En plus, tu peut être guidé par les autres étudiants qui ont eu les mêmes problèmes et embrouilles que toi.</p>
+    </div>
+    <form method="get" class="search">
+        <div class="form-field">
+            <input type="text" placeholder="Cherche une procédure..." {% if search %}value="{{ search }}"{% endif %} name="q"/>
+            <button><span class="iconify" data-icon="mdi-magnify"></span></button>
+        </div>
+    </form>
+    <div class="procedures">
+        {% for article in articles %}
+            <a class="procedure" href="{% url "view_procedure" article.slug %}">
+                <h3 class="procedure-title">{{ article.title }}</h3>
+                <div class="procedure-desc">{{ article.text|truncatewords:20 }}</div>
+                <div class="procedure-footer">
+                    <div class="procedure-tags">
+                        {% for tag in article.tag.all %}
+                            <span class="tag">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="procedure-duration">
+                        <span class="iconify" data-icon="mdi-timer"></span>
+                        <span class="duration-text">{{ article.duration.seconds }} jour{{ article.duration.seconds|pluralize }}</span>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
