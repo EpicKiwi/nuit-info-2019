@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
@@ -7,7 +8,12 @@ from procedures.models import Article, Step, Comment, ContentStep
 
 def list_procedures(request):
 
-    articles = Article.objects.all()
+    if "q" in request.GET:
+        search = request.GET["q"]
+        articles = Article.objects.filter(Q(title__unaccent__icontains=search) | Q(text__unaccent__icontains=search))
+    else:
+        search=None
+        articles = Article.objects.all()
 
     return render(request, 'procedures/list_procedures.html', locals())
 

@@ -11,6 +11,12 @@
         <p>Chaque procédure administrative que tu retrouve sur ce site te donne en détail, les fichiers à fournir, les exceptions et les différentes variantes de chaque procédure.</p>
         <p>En plus, tu peut être guidé par les autres étudiants qui ont eu les mêmes problèmes et embrouilles que toi.</p>
     </div>
+    <form method="get" class="search">
+        <div class="form-field">
+            <input type="text" placeholder="Cherche une procédure..." {% if search %}value="{{ search }}"{% endif %} name="q"/>
+            <button><span class="iconify" data-icon="mdi-magnify"></span></button>
+        </div>
+    </form>
     <div class="procedures">
         {% for article in articles %}
             <a class="procedure" href="{% url "view_procedure" article.slug %}">
