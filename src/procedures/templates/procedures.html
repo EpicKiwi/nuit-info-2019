@@ -10,15 +10,9 @@
         <h1>{{ article.title }}</h1>
     </div>
     <ul class="tags">
-        <li class="tag">
-            Logement
-        </li>
-        <li class="tag">
-            CAF
-        </li>
-        <li class="tag">
-            Finance
-        </li>
+       {% for tag in article.tag.all %}
+        <li class="tag">{{ tag }}</li>
+        {% endfor %}
     </ul>
     <div class="article-description">
         <div class="article-description-header">
@@ -29,10 +23,7 @@
             </div>
         </div>
         <p>
-        {{ article.description }}
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consectetur consequatur distinctio ex
-            placeat saepe sed temporibus velit voluptates. Consequuntur doloribus ducimus est, iste obcaecati recusandae
-            repellat tempore ut? Explicabo.
+        {{ article.text }}
         </p>
     </div>
 
@@ -70,9 +61,6 @@
                                             </li>
                                         </ul>
                                         <div class="separator"></div>
-                                        <div class="tip-duration">
-                                            Posté :{{ tip.duration }} 06 dec 2019
-                                        </div>
                                     </div>
                                     <p class="tip-description">
                                         {{ comment.text }}
