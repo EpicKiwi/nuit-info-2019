@@ -18,16 +18,23 @@
         </li>
     </ul>
     <div class="article-description">
-    {{ article.description }}
+        <div class="article-description-header">
+            <h3 class="article-description-title">Description de la démarche</h3>
+            <div class="separator"></div>
+            <div class="article-duration">
+                Durée moyenne :{{ article.duration }} 3 jours
+            </div>
+        </div>
+        <p>
+        {{ article.description }}
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consectetur consequatur distinctio ex
             placeat saepe sed temporibus velit voluptates. Consequuntur doloribus ducimus est, iste obcaecati recusandae
             repellat tempore ut? Explicabo.
+        </p>
     </div>
-    <div class="article-duration">
-    {{ article.duration }} 3 jours
-    </div>
+
     <div class="article-steps">
-        <h2 class="article-step-title">{{ article_step.title }}Estime tes droits sur le site de la CAF</h2>
+        <h3 class="article-step-title">{{ article_step.title }}Estime tes droits sur le site de la CAF</h3>
         <p class="article-step-description">{{ article_step.description }}
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque dolorum ducimus error illum incidunt ipsam laudantium, molestias numquam,
             optio porro quae quas sed sequi unde vel voluptates? Libero.
@@ -35,24 +42,36 @@
         <div class="tips">
             <div class="tip">
                 <div class="tip-vote">
+                    Score
+                </div>
+                <div class="tip-content">
+                    <div class="tip-author">
+                        <img class="author-pic" src="#" alt="author-pic">
+                        <h2 class="author-name">{{ tip.author.name }}Jean-Cloud</h2>
+                        <ul class="tip-tags">
+                        <li class="tip-tag">
+                            lieu
+                        </li>
+                    </ul>
+                        <div class="separator"></div>
+                        <div class="tip-duration">
+                        Posté :{{ tip.duration }} 06 dec 2019
+                        </div>
+                    </div>
 
+                    <p class="tip-description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolor dolorem doloribus earum harum modi temporibus vero.
+                        Ad aliquid esse et maiores quia, quibusdam quo quos repellendus sunt voluptas voluptatibus.
+                    </p>
                 </div>
-                <div class="tip-author">
-                    <img class="author-pic" src="#" alt="author-pic">
-                    <h2 class="author-name">{{ tip.author.name }}Jean-Cloud</h2>
-                </div>
-                <p class="tip-description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolor dolorem doloribus earum harum modi temporibus vero.
-                    Ad aliquid esse et maiores quia, quibusdam quo quos repellendus sunt voluptas voluptatibus.
-                </p>
             </div>
-            <button class="more-tip">
+            <div class="more-tip">
+                <button>
                 <span>Plus d'astuces</span>
                 <span class="iconify" data-icon="mdi-chevron-down"></span>
             </button>
-
+            </div>
         </div>
-
     </div>
 
 
