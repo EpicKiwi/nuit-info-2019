@@ -172,7 +172,7 @@
     border: var(--dark-background-color) solid 1px;
     background-color: var(--dark-background-color);
     padding: 5px 10px;
-    margin: 5px -10px -10px -10px;
+    margin: 5px -20px -20px -20px;
     text-align: center;
 }
 
