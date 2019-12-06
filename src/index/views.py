@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
+from django.urls import reverse
 
 
 def index(request):
-	return render(request, "index/index.html")
+	return redirect(reverse("list_procedures"))
 
 
 def handler404(request, exception):
