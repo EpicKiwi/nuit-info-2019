@@ -27,7 +27,7 @@ class Article(models.Model):
 	text = models.TextField()
 	updateDate = models.DateTimeField()
 	duration = models.DurationField()
-	tag = models.ManyToManyField(Tag)
+	tag = models.ManyToManyField(Tag, blank=True)
 	helpers = models.ManyToManyField(Student, blank=True)
 	author = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="%(app_label)s%(class)s_related",
 	                           related_query_name="%(app_label)s%(class)s")
