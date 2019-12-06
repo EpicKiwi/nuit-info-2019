@@ -4,16 +4,6 @@ from users.models import Student
 
 # Create your models here.
 
-
-class File(models.Model):
-    file = models.FileField()
-    tag = models.CharField(max_length=25)
-    addedDate = models.DateField()
-
-    def __str__(self):
-        return self.tag
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=70, unique=True, help_text='--> nom du tag')
 
@@ -35,8 +25,8 @@ class Article(models.Model):
     text = models.TextField()
     updateDate = models.DateTimeField()
     duration = models.DurationField()
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    helpers = models.ManyToManyField(Student)
+    tag = models.ManyToManyField(Tag)
+    helpers = models.ManyToManyField(Student, blank=True)
     author = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="%(app_label)s%(class)s_related",
                                related_query_name="%(app_label)s%(class)s")
 
@@ -64,7 +54,7 @@ class ContentStep(models.Model):
     text = models.TextField()
     duration = models.DurationField()
     step = models.ForeignKey(Step, on_delete=models.CASCADE)
-    file = models.ForeignKey(File, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="content-files", blank=True, null=True)
 
     def __str__(self):
         return self.text
@@ -72,10 +62,10 @@ class ContentStep(models.Model):
 
 class Comment(models.Model):
     text = models.TextField()
-    like = models.IntegerField()
-    date = models.DateField()
-    file = models.ForeignKey(File, on_delete=models.CASCADE)
-    user = models.ForeignKey(Student, on_delete=models.CASCADE)
+    like = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+    file = models.FileField(upload_to="comment-files", blank=True, null=True)
+    user = models.ForeignKey(Student, on_delete=models.CASCADE, blank=True, null=True)
     tag = models.ManyToManyField(Tag)
     contentStep = models.ForeignKey(ContentStep, on_delete=models.CASCADE)
 
