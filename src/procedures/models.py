@@ -67,8 +67,8 @@ class ContentStep(models.Model):
 	def get_comment_form(self):
 		return CommentForm(data={"step_content_id": self.id})
 
-	def get_best_comment(self):
-		return self.comments.order_by("-like")
+	def get_best_comments(self):
+		return self.comments.all()
 
 	def __str__(self):
 		return "{} of {}".format(self.type, str(self.step))
