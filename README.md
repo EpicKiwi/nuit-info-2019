@@ -2,6 +2,34 @@
 
 > Projet principal de la nuit de l'info 2019 dit No PLS
 
+## Intro
+
+Le but de ce défi était de créer un outil permettant aux étudiants "novices" de profiter de l'expérience et des conseils d'étudiants plus expérimentés. 
+
+## Vision du sujet
+
+- Identification des ressources
+- Mise en relation pair à pair
+
+L'application web est **collaborative**. 
+Chacun peut poster un "guide" sur une démarche administrative, scolaire... qu'il a pu expérimenter et qu'il souhaiterait **partager avec autrui**. 
+
+L'application permet de voir les démarches, divisées en étapes, en bas désquelles chacun peut ajouter un commentaire, afin de rajouter sa pierre à l'édifice.
+
+## Utilisation de l'application
+
+1. La page d'accueil affiche la liste des **dernières procédures**. Une barre de recherche permet de trouver plus simplement sa procédure.
+2. La procédure est composée d'une **suite d'actions**. Pour chacune, on a un texte explicatif, une durée approximative, si elle peut être faite en physique ou online (avec les informations necessaires), et les documents qui peuvent être liées. Sous chacune, les commentaires les plus utiles (votés par la communauté) sont affichés. 
+3. Une fois toutes les étapes terminées, l'utilisateur gagne un **point de procédure** et il peut devenir **Helper** pour l'article ! Cela permettra à d'autres usagers de lui envoyer un message concernant cette démarche.
+
+*Visuel de l'application*
+![Visuel de l'application](https://cdn.discordapp.com/attachments/652190133176500256/652376458597105695/20191206_061034.jpg "Visuel de l'application")*ouvrez l'image dans un nouvel onglet si vous la voulez à l'endroit*
+
+## Accès au code
+
+* [Version live](https://nopls.epickiwi.fr/)
+
+
 ## Installation
 
 Assurez vous d'avoir installé Python *3.x* et qu'il est accessible sur la commande `python`.
