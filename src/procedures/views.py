@@ -10,7 +10,7 @@ def list_procedures(request):
 
     if "q" in request.GET:
         search = request.GET["q"]
-        articles = Article.objects.filter(Q(title__unaccent__icontains=search) | Q(text__unaccent__icontains=search))
+        articles = Article.objects.filter(Q(title__contains=search) | Q(text__contains=search) | Q(tag__name__contains=search))
     else:
         search=None
         articles = Article.objects.all()

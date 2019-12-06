@@ -10,8 +10,7 @@
     display: block;
 
     width: calc(100% - 10px);
-    max-width: 490px;
-    margin: 5px;
+    margin: 10px 5px;
 
     box-shadow: 0 5px 10px rgba(0,0,0,0.3);
     border-radius: 3px;
