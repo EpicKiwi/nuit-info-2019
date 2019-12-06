@@ -83,9 +83,18 @@
     margin: 0 10px;
 }
 
+.tip-hidden {
+    display: none;
+}
+
 .tip-vote {
-    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
     margin: 0 10px 0 0;
+}
+
+.icon-vote {
+    margin-left: 15px;
 }
 
 .tip-author {
@@ -115,11 +124,11 @@
     width: fit-content;
 }
 
-
 .tip-description {
     font-family: var(--body-text-fonts);
     font-size: 0.95em;
     margin-bottom: 5px;
+    margin-left: 15px;
 }
 
 .tip-footer {
@@ -153,4 +162,42 @@
     background-color: var(--dark-background-color);
 }
 
+.comment-form-hidden {
+    display: none;
+}
 
+.comment-form {
+    display: block;
+}
+
+.comment-form label {
+    font-family: var(--body-text-fonts);
+    color: var(--header-text-secondary-color);
+    margin: 5px 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+.comment-form ul li {
+    font-family: var(--body-text-fonts);
+    margin: 5px 0;
+    padding: 0;
+    font-size: 0.8em;
+}
+
+.comment-form ul {
+    list-style: none;
+}
+
+.comment-form textarea {
+    width: -webkit-fill-available;
+    border: var(--dark-background-color) solid 1px;
+}
+
+.comment-form button {
+    border-radius: 1rem;
+    border: var(--dark-background-color) solid 1px;
+    background-color: var(--dark-background-color);
+    color: var(--body-text-color);
+    padding: 5px 10px;
+}
