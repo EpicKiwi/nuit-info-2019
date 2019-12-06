@@ -22,7 +22,8 @@ from index.views import handler404 as custom404handler
 urlpatterns = [
     path("", include("index.urls")),
     path('admin/', admin.site.urls),
-    path('p/', include("procedures.urls"))
+    path('p/', include("procedures.urls")),
+    path('404', custom404handler)
 ]
 
 handler404 = custom404handler

@@ -1,7 +1,22 @@
-{% extends "layouts/base.html" %}
-{% block notitle %}{# Pas de titre #}{% endblock %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Erreur 404 - No PLS</title>
+  <base href="{{url}}">
 
-{% block body %}
-    <h1>C'est une erreur 404</h1>
-    <h2>Déso, on sait pas ce que tu cherches...</h2>
-{% endblock %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <app-root></app-root>
+    <script src="{% static "404/runtime.js" %}" type="module"></script>
+    <script src="{% static "404/polyfills.js" %}" type="module"></script>
+    <script src="{% static "404/styles.js" %}" type="module"></script>
+    <script src="{% static "404/vendor.js" %}" type="module"></script>
+    <script src="{% static "404/main.js" %}" type="module"></script>
+</body>
+</html>
