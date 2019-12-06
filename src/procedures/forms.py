@@ -1,4 +1,5 @@
 from django import forms
+from procedures.models import Tag
 
 
 class CommentForm(forms.Form):
@@ -8,3 +9,4 @@ class CommentForm(forms.Form):
 		widget=forms.Textarea(attrs={
 			"placeholder": "Ecrivez une astuces pour les suivants..."
 		}), required=True)
+	tag = forms.ModelChoiceField(Tag.objects.all(), required=False)

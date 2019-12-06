@@ -1,7 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-
-from procedures.forms import CommentForm
 from users.models import Student
 
 
@@ -65,6 +63,7 @@ class ContentStep(models.Model):
 	file = models.FileField(upload_to="content-files", blank=True, null=True)
 
 	def get_comment_form(self):
+		from procedures.forms import CommentForm
 		return CommentForm(data={"step_content_id": self.id})
 
 	def get_best_comments(self):
