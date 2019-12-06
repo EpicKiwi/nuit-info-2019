@@ -55,15 +55,31 @@
 .article-description, .article-steps {
     border-radius: 1rem;
     border: var(--dark-background-color) solid 1px;
-    margin: 50px 20px;
+    margin: 50px 25%;
     padding: 10px;
 
+
+}
+
+.article-step-body {
+    list-style: none;
+    display: flex;
+}
+
+.article-step-content h4 {
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;
+    border: var(--dark-background-color) solid 1px;
+}
+
+.article-step-content p {
+    border: var(--dark-background-color) solid 1px;
 }
 
 .article-description p, .article-step-description {
     font-family: var(--body-text-fonts);
     font-size: 1em;
-    margin: 10px;
+    padding: 10px;
 }
 
 .article-duration {
@@ -90,11 +106,20 @@
 .tip-vote {
     display: flex;
     flex-direction: column;
-    margin: 0 10px 0 0;
+    margin: 0 20px 0 0;
+    padding-right: -5px;
 }
 
 .icon-vote {
     margin-left: 15px;
+}
+
+.vote-nb {
+    margin-left: 18.75px;
+}
+
+.tip-content {
+    width: 100%;
 }
 
 .tip-author {
@@ -147,7 +172,7 @@
     border: var(--dark-background-color) solid 1px;
     background-color: var(--dark-background-color);
     padding: 5px 10px;
-    margin: 5px -20px -20px -20px;
+    margin: 5px -10px -10px -10px;
     text-align: center;
 }
 
@@ -190,7 +215,7 @@
 }
 
 .comment-form textarea {
-    width: -webkit-fill-available;
+    width: 100%;
     border: var(--dark-background-color) solid 1px;
 }
 
