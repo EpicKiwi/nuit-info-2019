@@ -6,7 +6,7 @@ function check(id) {
   if (checkBox.checked){
       //change tip to tip-hidden
       tip.classList.add("tip-hidden");
-      tip.classList.remove("tip");
+      tip.classList.remove("tips");
 
       //comment-form en comment-form-hidden
 
@@ -15,7 +15,7 @@ function check(id) {
       form.classList.add("comment-form");
   }
   else {
-      tip.classList.add("tip");
+      tip.classList.add("tips");
       tip.classList.remove("tip-hidden");
 
       form.classList.add("comment-form-hidden");
