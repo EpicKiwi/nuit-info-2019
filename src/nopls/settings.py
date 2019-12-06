@@ -27,6 +27,7 @@ DEBUG = os.getenv("ENVIRONMENT", "production") == "development"
 
 ALLOWED_HOSTS = ['*']
 
+AUTH_USER_MODEL = 'users.Student'
 
 # Application definition
 
