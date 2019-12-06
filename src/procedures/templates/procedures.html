@@ -1,10 +1,13 @@
 {% extends "layouts/base.html" %}
-{% block title%}{{ article.titre }}Prout{% endblock %}
-
+{% block title%}{{ article.title }}{% endblock %}
+{% load static %}
+{% block scripts %}
+    <script src="{% static 'procedures.js'%}"></script>
+{% endblock %}
 {% block body %}
 
     <div class="article-title">
-        <h1>{{ article.titre }}Demande APL</h1>
+        <h1>{{ article.title }}</h1>
     </div>
     <ul class="tags">
         <li class="tag">
@@ -35,24 +38,26 @@
 
 {% for step in steps %}
 
-    <div class="article-steps">
-        <h3 class="article-step-title">{{ forloop.counter }}. {{ step.title }}</h3>
-        {% if step.contentstep_set.all|length >= 2 %}
-            <ul class="article-step-body">
-                {% for contentstep in step.contentstep_set.all %}
+        <div class="article-steps">
+            <h3 class="article-step-title">{{ forloop.counter }}. {{ step.title }}</h3>
+
+            <input type="checkbox" class="checkbox-step" onclick="check({{ step.id }})" id="checkbox-{{ step.id }}">
+             {% if step.contentstep_set.all|length >= 2 %}
+                 <ul class="article-step-body">
+
+                    {% for contentstep in step.contentstep_set.all %}
                     <li class="article-step-content">
                         <h4>{{ contentstep.type }}</h4>
 
-                        <p class="article-step-description">{{ contentstep.text }}
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque dolorum ducimus error illum incidunt ipsam laudantium, molestias numquam,
-                            optio porro quae quas sed sequi unde vel voluptates? Libero.
+                        <p class="article-step-description">
+                            {{ contentstep.text }}
                         </p>
-                        <div class="tips">
+                        <div class="tips" id="tips-{{ step.id }}">
                             {% for comment in contentstep.get_best_comments %}
                             <div class="tip">
                                 <div class="tip-vote">
                                     <a class="iconify icon-vote" data-icon="mdi-chevron-up" href="{% url "comment_upvote" article_slug comment.id %}">Upvote</a>
-                                    <p>  {{ comment.like }} </p>
+                                    <p>  Likes : {{ comment.like }} </p>
                                     <a class="iconify icon-vote" data-icon="mdi-chevron-down" href="{% url "comment_downvote" article_slug comment.id %}">Downvote</a>
                                 </div>
                                 <div class="tip-content">
@@ -69,108 +74,77 @@
                                             Posté :{{ tip.duration }} 06 dec 2019
                                         </div>
                                     </div>
-
                                     <p class="tip-description">
                                         {{ comment.text }}
                                     </p>
-                                </div>
                             </div>
-                             {% endfor %}
-                            <form class="comment-form-hidden" action="{% url "send_comment" article_slug=article.slug %}" method="post">
+                            </div>
+                         {% endfor %}
+                            <div class="more-tip">
+                                <button>
+                                <span>Plus d'astuces</span>
+                                <span class="iconify" data-icon="mdi-chevron-down"></span>
+                            </button>
+                            </div>
+                        </div>
+                        <form class="comment-form-hidden" id="form-{{ step.id }}" action="{% url "send_comment" article_slug=article.slug %}" method="post">
                             {% csrf_token %}
                             {{ contentstep.get_comment_form }}
                             <button>Send</button>
-                            </form>
-
-                        </div>
+                        </form>
                     </li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                {% for contentstep in step.contentstep_set.all %}
-                    <p class="article-step-description">{{ contentstep.text }}
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque dolorum ducimus error illum incidunt ipsam laudantium, molestias numquam,
-                        optio porro quae quas sed sequi unde vel voluptates? Libero.
-                    </p>
-                    <div class="tips">
-                            {% for comment in contentstep.get_best_comments %}
-                            <div class="tip">
-                                <div class="tip-vote">
-                                    <a class="iconify icon-vote" data-icon="mdi-chevron-up" href="{% url "comment_upvote" article_slug comment.id %}">Upvote</a>
-                                    <p class="vote-nb">  {{ comment.like }} </p>
-                                    <a class="iconify icon-vote" data-icon="mdi-chevron-down" href="{% url "comment_downvote" article_slug comment.id %}">Downvote</a>
-                                </div>
-                                <div class="tip-content">
-                                    <div class="tip-author">
-                                        <img class="author-pic" src="#" alt="author-pic">
-                                        <h2 class="author-name">{{ tip.author.name }}Jean-Cloud</h2>
-                                        <ul class="tip-tags">
-                                            <li class="tip-tag">
-                                                lieu
-                                            </li>
-                                        </ul>
-                                        <div class="separator"></div>
-                                        <div class="tip-duration">
-                                            Posté :{{ tip.duration }} 06 dec 2019
-                                        </div>
-                                    </div>
-
-                                    <p class="tip-description">
-                                        {{ comment.text }}
-                                    </p>
-                                </div>
+                     {% endfor %}
+                 </ul>
+                {% else %}
+                    {% for contentstep in step.contentstep_set.all %}
+                            <p class="article-step-description">
+                                {{ contentstep.text }}
+                            </p>
+                            <div class="tips" id="tips-{{ step.id }}">
+                        {% for comment in contentstep.get_best_comments %}
+                        <div class="tip">
+                            <div class="tip-vote">
+                                <a class="iconify icon-vote" data-icon="mdi-chevron-up" href="{% url "comment_upvote" article_slug comment.id %}">Upvote</a>
+                                <p>  Likes : {{ comment.like }} </p>
+                                <a class="iconify icon-vote" data-icon="mdi-chevron-down" href="{% url "comment_downvote" article_slug comment.id %}">Downvote</a>
                             </div>
-                             {% endfor %}
-                            <form class="comment-form-hidden" action="{% url "send_comment" article_slug=article.slug %}" method="post">
-                            {% csrf_token %}
-                            {{ contentstep.get_comment_form }}
-                            <button>Send</button>
-                            </form>
-
+                            <div class="tip-content">
+                                <div class="tip-author">
+                                    <img class="author-pic" src="#" alt="author-pic">
+                                    <h2 class="author-name">{{ tip.author.name }}Jean-Cloud</h2>
+                                    <ul class="tip-tags">
+                                        <li class="tip-tag">
+                                            lieu
+                                        </li>
+                                    </ul>
+                                    <div class="separator"></div>
+                                    <div class="tip-duration">
+                                        Posté :{{ tip.duration }} 06 dec 2019
+                                    </div>
+                                </div>
+                                <p class="tip-description">
+                                    {{ comment.text }}
+                                </p>
                         </div>
-                {% endfor %}
-            {% endif %}
+                        </div>
+                     {% endfor %}
+                        <div class="more-tip">
+                            <button>
+                            <span>Plus d'astuces</span>
+                            <span class="iconify" data-icon="mdi-chevron-down"></span>
+                        </button>
+                        </div>
+                    </div>
+                    <form class="comment-form-hidden" id="form-{{ step.id }}" action="{% url "send_comment" article_slug=article.slug %}" method="post">
+                        {% csrf_token %}
+                        {{ contentstep.get_comment_form }}
+                        <button>Send</button>
+                    </form>
+            </div>
+        {% endfor %}
+{% endif %}
 
-        <div class="more-tip">
-            <button>
-                <span>Plus d'astuces</span>
-                <span class="iconify" data-icon="mdi-chevron-down"></span>
-            </button>
-        </div>
-    </div>
 
 {% endfor %}
-
-<!--    <section>-->
-
-<!--    {% for step in steps %}-->
-
-<!--        <h3>{{ forloop.counter }}. {{ step.title }}</h3>-->
-<!--        -->
-<!--        {% for contentstep in step.contentstep_set.all %}-->
-
-<!--            <h4>{{ contentstep.type }}</h4>-->
-<!--            {% for comment in contentstep.get_best_comments %}-->
-<!--                <div class="comment">-->
-<!--                    <p class="likes">Likes : {{ comment.like }}</p>-->
-<!--                    <p><a href="{% url "comment_upvote" article_slug comment.id %}">Upvote</a> - <a href="{% url "comment_downvote" article_slug comment.id %}">Downvote</a></p>-->
-<!--                    <p class="comment-text">-->
-<!--                        {{ comment.text }}-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            {% endfor %}-->
-<!--            <form action="{% url "send_comment" article_slug=article.slug %}" method="post">-->
-<!--            {% csrf_token %}-->
-<!--            {{ contentstep.get_comment_form }}-->
-<!--            <button>Send</button>-->
-<!--            </form>-->
-<!--            -->
-<!--        {% endfor %}-->
-
-
-<!--    {% endfor %}-->
-
-
-<!--    </section>-->
 
 {% endblock %}
