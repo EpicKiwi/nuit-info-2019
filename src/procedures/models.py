@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 
+from procedures.forms import CommentForm
 from users.models import Student
 
 
@@ -44,7 +45,7 @@ class Article(models.Model):
 class Step(models.Model):
 	title = models.CharField(max_length=200)
 	order = models.IntegerField()
-	article = models.ForeignKey(Article, on_delete=models.CASCADE)
+	article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="steps")
 
 	def __str__(self):
 		return self.title
@@ -63,8 +64,14 @@ class ContentStep(models.Model):
 	step = models.ForeignKey(Step, on_delete=models.CASCADE)
 	file = models.FileField(upload_to="content-files", blank=True, null=True)
 
+	def get_comment_form(self):
+		return CommentForm(data={"step_content_id": self.id})
+
+	def get_best_comment(self):
+		return self.comments.order_by("-like")
+
 	def __str__(self):
-		return self.text
+		return "{} of {}".format(self.type, str(self.step))
 
 
 class Comment(models.Model):
@@ -74,7 +81,7 @@ class Comment(models.Model):
 	file = models.FileField(upload_to="comment-files", blank=True, null=True)
 	user = models.ForeignKey(Student, on_delete=models.CASCADE, blank=True, null=True)
 	tag = models.ManyToManyField(Tag)
-	contentStep = models.ForeignKey(ContentStep, on_delete=models.CASCADE)
+	contentStep = models.ForeignKey(ContentStep, on_delete=models.CASCADE, related_name="comments")
 
 	def __str__(self):
 		return self.text

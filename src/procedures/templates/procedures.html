@@ -55,5 +55,35 @@
 
     </div>
 
+    <section>
+
+    {% for step in steps %}
+
+        <h3>{{ forloop.counter }}. {{ step.title }}</h3>
+        
+        {% for contentstep in step.contentstep_set.all %}
+
+            <h4>{{ contentstep.type }}</h4>
+            {% for comment in contentstep.get_best_comments %}
+                <div class="comment">
+                    <p class="likes">Likes : {{ comment.like }}</p>
+                    <p class="comment-text">
+                        {{ comment.text }}
+                    </p>
+                </div>
+            {% endfor %}
+            <form action="{% url "send_comment" article_slug=article.slug %}" method="post">
+            {% csrf_token %}
+            {{ contentstep.get_comment_form }}
+            <button>Send</button>
+            </form>
+            
+        {% endfor %}
+
+
+    {% endfor %}
+
+
+    </section>
 
 {% endblock %}

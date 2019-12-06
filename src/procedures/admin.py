@@ -1,5 +1,5 @@
 from django.contrib import admin
-from procedures.models import Article, Step, Tag, ContentStep, Badge
+from procedures.models import Article, Step, Tag, ContentStep, Badge, Comment
 
 
 # Register your models here.
@@ -22,6 +22,11 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(ContentStep)
 class ContentStepAdmin(admin.ModelAdmin):
+	pass
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
 	pass
 
 
