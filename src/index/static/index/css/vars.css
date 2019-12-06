@@ -1,16 +1,21 @@
 body {
     --heading-text-fonts: sans-serif;
-    --body-text-fonts: sans-serif;
+    --body-text-fonts: 'Open Sans', sans-serif;
 
-    --primary-color: #000;
-    --secondary-color: #000;
-    --background-color: #fff;
+    --primary-color: #22b8c7;
+    --secondary-color: #61226f;
+    --background-color: #eee;
+    --dark-background-color: #363635;
 
-    --heading-text-color: #000;
-    --body-text-color: #000;
+    --heading-text-color: #ECC427;
+    --body-text-color: #22b8c7;
+    --header-text-secondary-color: #3c6e71;
 
     --heading-text-color-on-primary: #fff;
     --body-text-color-on-primary: #fff;
+
+    --heading-text-color-on-dark: #fff;
+    --body-text-color-on-dark: #fff;
 
     --on-primary: #fff;
     --on-secondary: #fff;

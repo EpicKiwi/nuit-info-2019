@@ -5,28 +5,25 @@ from django.contrib.auth.models import (
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, name, surname, badge, location, creationDate, password=None):
+    def create_user(self, name, surname, full_name, badge, location, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
         """
-        if not name:
-            raise ValueError('Users must have a name')
 
         user = self.model(
             name = name,
             surname = surname,
-            fullName = name + ' ' + surname,
+            full_name = full_name,
             badge = badge,
             location = location,
-            creationDate = creationDate,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, name, surname, badge, location, creationDate, password=None):
+    def create_superuser(self,  full_name, name=None, surname=None, badge=None, location=None, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -34,11 +31,10 @@ class MyUserManager(BaseUserManager):
         user = self.create_user(
             name = name,
             surname = surname,
-            fullName = name + ' ' + surname,
+            full_name = full_name,
             badge = badge,
             location = location,
-            creationDate = creationDate,
-            password = password,
+            password = password
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -47,19 +43,17 @@ class MyUserManager(BaseUserManager):
 
 class Student(AbstractBaseUser):
 
-    name = models.CharField(max_length=25)
-    surname = models.CharField(max_length=25)
-    full_name = models.CharField(max_length=51)
-    badge = models.ImageField()
-    location = models.CharField(max_length=25)
-    creationDate = models.DateField()
-    is_active = models.BooleanField(default=True)
+    name = models.CharField(max_length=25, blank=True, null=True)
+    surname = models.CharField(max_length=25, blank=True, null=True)
+    full_name = models.CharField(max_length=51, unique=True)
+    badge = models.ImageField(blank=True, null=True)
+    location = models.CharField(max_length=25, blank=True, null=True)
+    creationDate = models.DateField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
     USERNAME_FIELD = 'full_name'
-    REQUIRED_FIELDS = ['full_name']
 
     def __str__(self):
         return self.full_name

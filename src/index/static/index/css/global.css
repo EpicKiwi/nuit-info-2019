@@ -1,5 +1,156 @@
 * {
+    background-color: var(--background-color);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+
+.header-title {
+    background-color: var(--dark-background-color);
+    font-family: var(--body-text-fonts);
+    text-align: center;
+    color: var(--background-color);
+    margin: 0;
+    padding: 10px;
+}
+
+.article-title {
+    font-family: var(--body-text-fonts);
+    text-align: center;
+    color: var(--heading-text-color);
+    margin: 10px;
+    padding: 0;
+}
+
+.tags {
+    list-style: none;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tags li  {
+    display: inline;
+    margin: 0 5px;
+}
+
+.tag, .tip-tag {
+    background-color: var(--dark-background-color);
+    padding: 5px 10px;
+    border-radius: 1rem;
+    color: var(--body-text-color);
+}
+
+.article-description-header {
+    display: flex;
+}
+
+.article-description-title,  .article-step-title{
+    font-family: var(--body-text-fonts);
+    color: var(--header-text-secondary-color);
+    margin: 10px;
+    padding: 0;
+}
+
+.article-description, .article-steps {
+    border-radius: 1rem;
+    border: var(--dark-background-color) solid 1px;
+    margin: 50px 20px;
+    padding: 10px;
+
+}
+
+.article-description p, .article-step-description {
+    font-family: var(--body-text-fonts);
+    font-size: 1em;
+    margin: 10px;
+}
+
+.article-duration {
+    font-family: var(--body-text-fonts);
+    font-size: 0.7em;
+    padding-top: 15px;
+}
+
+.tips {
+    border-top: var(--dark-background-color) solid 1px ;
+    padding: 10px 20px;
+    margin: 0 -10px;
+}
+
+.tip {
+    display: flex;
+    margin: 0 10px;
+}
+
+.tip-vote {
+    padding-top: 30px;
+    margin: 0 10px 0 0;
+}
+
+.tip-author {
+    display: flex;
+    margin: 0 10px;
+}
+
+.author-pic {
+    padding: 5px 0;
+}
+
+.author-name {
+    font-family: var(--body-text-fonts);
+    font-size: 0.95em;
+    margin: 0 10px;
+    padding: 5px 0;
+}
+
+.tip-tags {
+     list-style: none;
+    text-align: center;
+}
+
+.tip-tag {
+    margin: 0 15px;
+    height: fit-content;
+    width: fit-content;
+}
+
+
+.tip-description {
+    font-family: var(--body-text-fonts);
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+.tip-footer {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.separator {
+    flex: 1;
+}
+
+.more-tip {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: var(--dark-background-color) solid 1px;
+    background-color: var(--dark-background-color);
+    padding: 5px 10px;
+    margin: 5px -20px -20px -20px;
+    text-align: center;
+}
+
+.more-tip button {
+    border: var(--dark-background-color) solid 1px;
+    background-color: var(--dark-background-color);
+    padding: 5px 10px;
+}
+
+.more-tip span {
+    color: var(--body-text-color);
+    background-color: var(--dark-background-color);
+}
+
+
