@@ -43,7 +43,7 @@
                     <li class="article-step-content">
                         <h4>{{ contentstep.type }}</h4>
 
-                        <p class="article-step-description">{{ article_step.description }}
+                        <p class="article-step-description">{{ contentstep.text }}
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque dolorum ducimus error illum incidunt ipsam laudantium, molestias numquam,
                             optio porro quae quas sed sequi unde vel voluptates? Libero.
                         </p>
@@ -88,7 +88,7 @@
                 </ul>
             {% else %}
                 {% for contentstep in step.contentstep_set.all %}
-                    <p class="article-step-description">{{ article_step.description }}
+                    <p class="article-step-description">{{ contentstep.text }}
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid atque dolorum ducimus error illum incidunt ipsam laudantium, molestias numquam,
                         optio porro quae quas sed sequi unde vel voluptates? Libero.
                     </p>
